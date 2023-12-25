@@ -1,0 +1,1043 @@
+﻿@page
+@model WebApplication1.Pages.HomeModel
+@{
+}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        
+        
+
+        .sidebar {
+            z-index: 1;
+            top: 0;
+            background: #5041BC;
+            padding-top: 90px;
+            position: fixed;
+            left: 0;
+            width: 300px;
+            height: calc(100% - 0%);
+            transition: 3.5s;
+            transition-property: left;
+            overflow-y: auto;
+        }
+
+        .container1_circles {
+            position: absolute;
+            top: 50px;
+            left: 130px
+        }
+
+        .circleTwo {
+            background-color: #FFC629;
+            border-radius: 50%;
+            top: -30px; /* Adjust the top position as needed */
+            width: 65px; /* Adjust the width to make it smaller */
+            left: -60px;
+            height: 65px; /* Adjust the height to make it smaller */
+            position: absolute; /* Ensure it's positioned correctly */
+        }
+
+        .circleOne {
+            background-color: #FF7F57; /* Change the color of the smaller circle as needed */
+            border-radius: 50%;
+            top: -22px; /* Adjust the top position to position it next to the larger circle */
+            width: 50px; /* Adjust the width to make it smaller */
+            height: 50px; /* Adjust the height to make it smaller */
+            position: absolute;
+            left: -85px; /* Adjust the left position to position it next to the larger circle */
+        }
+
+        .Title_circle {
+            color: white;
+            font-family: Passion One;
+            font-size: 30px;
+            font-weight: 400;
+            top: -30px; /* Adjust the top position to position it next to the larger circle */
+            width: 100px; /* Adjust the width to make it smaller */
+            height: 40px; /* Adjust the height to make it smaller */
+            left: -50px;
+            position: absolute;
+        }
+
+        .profile_info {
+            margin-top: 20px; /* Increase the value to move the picture down */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .profile_image {
+            width: 100px; /* Genişliği ayarlayın */
+            height: 100px; /* Yüksekliği ayarlayın */
+            border-radius: 50%; /* Yuvarlak bir şekil oluşturun */
+            border: 2px solid #007bff; /* Belirli bir renkte kenarlık ekleyin */
+            display: block; /* Blok bir öğe olmasını sağlayın (örneğin, merkezlemek için) */
+            margin: 0 auto; /* Resmi yatayda merkezlemek için */
+        }
+
+
+        .sidebar .profile_info .profile_image {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            margin-bottom: 100px;
+            background-color: darkgray;
+        }
+
+        .sidebar a {
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 70px;
+            text-decoration: none;
+            padding-left: 50px;
+            box-sizing: border-box;
+            transition: 0.5s;
+            transition-property: background;
+        }
+
+            .sidebar a:hover {
+                background: #FFC629;
+            }
+        
+
+        /**/
+        /**/ /**/
+        /**/ /**/
+
+        .islemekle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            margin-left:23%;
+        }
+
+        .ekle {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 100%;
+            color: black;
+        }
+
+
+        .ekle-link {
+            text-decoration: none; /* Remove underline from the link */
+        }
+
+            .ekle-link:hover {
+                transform: scale(1.2); /* Increase the size on hover */
+            }
+
+        .islem {
+            display: flex;
+            margin-right: 80%; /* Adjust this value as needed */
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+
+        
+
+
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+        /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
+
+        
+
+        .notes-container {
+            height: 20vh; /* Adjust the height as needed */
+            overflow-y: auto;
+            background-color: #333;
+            padding: 20px;
+            margin-left: 22%; /* Adjust the left margin as needed */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .note {
+            margin-bottom: 8px;
+            padding: 9px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            position: relative;
+        }
+
+            .note button {
+                background-color: #555;
+                color: #fff;
+                border: none;
+                padding: 5px 10px;
+                margin-left: 10px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .note button:hover {
+                    background-color: #777;
+                }
+
+        .note-margin-left-0 {
+            margin-left: 1%;
+            color: white;
+        }
+
+        .note-margin-left-1 {
+            margin-left: 5%;
+            color: white;
+        }
+
+        .note span {
+            color: white;
+            margin-left: 5%;
+        }
+
+        /**/
+        /**/
+        /**/
+        /* New box desgin */
+
+        .islemekle-1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            margin-left: 23%;
+        }
+
+        .islem-1 {
+            display: flex;
+            margin-right: 80%; /* Adjust this value as needed */
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+        .ekle1 {
+            text-align: right;
+            margin-top: 1%;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            color: black;
+        }
+
+        .ekle-link-1 {
+            text-decoration: none; /* Remove underline from the link */
+        }
+
+            .ekle-link-1:hover {
+                transform: scale(1.2); /* Increase the size on hover */
+            }
+
+        .scroll-container {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+
+        .box-container {
+            margin-left: 22%;
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .box {
+            position: relative;
+            width: 190px;
+            height: 80px;
+            flex-shrink: 0; /* This prevents the box from shrinking */
+            background-color: #333;
+            margin-right: 5px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+
+        }
+
+        .top-left-note {
+            width: 90px;
+            height: 17.5px;
+            color : #E6E6E6;
+            background-color: #333;
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            border: none;
+            font-size: 12.5px;
+            font-weight: bold;
+            /* Additional styles... */
+        }
+
+        .middle-left-note {
+            color: #FFFFFF;
+            background-color: #333;
+            width: 170px;
+            height: 40px;
+            position: absolute;
+            top: 40%; /* Adjust as needed */
+            left: 10px;
+            font-size: 20px;
+            border: none;
+            /* Additional styles... */
+        }
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .scroll-button span {
+                font-size: 20px;
+            }
+
+        .add-box-button {
+            margin-top: 10%;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            .add-box-button:hover,
+            .scroll-button:hover {
+                background-color: #E68F11;
+            }
+
+
+        .delete-button {
+            position: absolute;
+            top: 0;
+            right: 1px;
+            padding: 2px 5px; /* Small padding for aesthetics */
+            margin: 2px; /* To ensure it doesn't stick to the very corner */
+            background: #333; /* Example background color for visibility */
+            border: none; /* Remove default border */
+            cursor: pointer;
+            color: white; /* Text color */
+            border-radius: 50%; /* Optional: if you want a rounded button */
+        }
+            
+
+        /**/
+        /**/
+        /**/
+        /**/
+        /*             BOX 22222222222222222222           */
+
+
+
+
+
+
+        .islemekle-2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            margin-left: 23%;
+        }
+
+        .islem-2 {
+            display: flex;
+            margin-right: 80%; /* Adjust this value as needed */
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+        .ekle2 {
+            text-align: right;
+            margin-top: 1%;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            color: black;
+        }
+
+        .ekle-link-2 {
+            text-decoration: none; /* Remove underline from the link */
+        }
+
+            .ekle-link-2:hover {
+                transform: scale(1.2); /* Increase the size on hover */
+            }
+
+        
+
+        .box-container2 {
+            margin-left: 22%;
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .box2 {
+            position: relative;
+            width: 190px;
+            height: 80px;
+            flex-shrink: 0; /* This prevents the box from shrinking */
+            background-color: #333;
+            margin-right: 5px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .top-left-note2 {
+            width: 90px;
+            height: 17.5px;
+            color: #E6E6E6;
+            background-color: #333;
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            border: none;
+            font-size: 12.5px;
+            font-weight: bold;
+            /* Additional styles... */
+        }
+
+        .middle-left-note2 {
+            color: #FFFFFF;
+            background-color: #333;
+            width: 170px;
+            height: 40px;
+            position: absolute;
+            top: 40%; /* Adjust as needed */
+            left: 10px;
+            font-size: 20px;
+            border: none;
+            /* Additional styles... */
+        }
+
+        
+
+
+        .delete-button2 {
+
+            position: absolute;
+            top: 0;
+            right: 1px;
+            padding: 2px 5px; /* Small padding for aesthetics */
+            margin: 2px; /* To ensure it doesn't stick to the very corner */
+            background: #333; /* Example background color for visibility */
+            border: none; /* Remove default border */
+            cursor: pointer;
+            color: white; /* Text color */
+            border-radius: 50%; /* Optional: if you want a rounded button */
+        }
+
+
+        
+       
+        /**/
+        /**/
+        /**/
+        /*bar*/
+     
+       
+
+        .chart {
+            width: 60%;
+            
+        }
+
+        .line-chart {
+            height: 20%;
+            margin-left: 20%;
+            margin-top: 2%;
+            
+        }
+
+        
+        /**/
+        /**/
+        /**/
+
+
+        
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin-left: -7%;
+            white-space: nowrap;
+            line-height: 60px;
+        }
+
+            .footer a {
+                text-decoration: none; /* Remove underline from all links in the footer */
+                color: burlywood; /* Inherit the color from the parent element (footer) */
+            }
+
+        .container12 {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 20%; /* Set left margin to zero */
+            padding: 0; /* Set padding to zero */
+        }
+
+
+    </style>
+
+</head>
+<body style="overflow-x: hidden;">
+    <!--sidebar start-->
+    <div class="sidebar">
+        
+        <div class="container1_circles">
+            <div class="circleOne"></div>
+            <div class="circleTwo"></div>
+            <div class="Title_circle">AdminUser</div>
+        </div>
+        <div class="profile_info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQurSbEfkF4oEgeH0xgCXQZImunI_Vbse-oT4c938UixA&s" class="profile_image" alt="Photo" role="img" />
+        </div> 
+        <a href="/Home" class="@(IsPageActive("Home"))"><i class="fas fa-desktop"></i><span>&nbsp;&nbsp;&nbsp;Ana Sayfa</span></a>
+        <a href="/Odenmesi" class="@(IsPageActive("Odenmesi"))"><i class="fas light fa-list"></i><span>&nbsp;&nbsp;&nbsp;Ödenecek Para</span></a>
+        <a href="/Borclar" class="@(IsPageActive("Borclar"))"><i class="fas fa-money-bill"></i><span>&nbsp;&nbsp;&nbsp;Borçlar</span></a>
+        <a href="/Info" class="@(IsPageActive("Info"))"><i class="fas fa-cogs"></i><span>&nbsp;&nbsp;&nbsp;Hesabım</span></a>
+        <a href="/Index" class="@(IsPageActive("Logout"))"><i class="fas fa-power-off"></i><span>&nbsp;&nbsp;&nbsp;Çıkış</span></a>
+
+
+        @functions {
+            // Method to determine if the current page is active
+            private string IsPageActive(string page)
+            {
+                return Request.Path.StartsWithSegments("/" + page, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+            }
+        }
+
+    </div>
+
+
+
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+    <!--sidebar end-->
+
+
+
+
+    <div style="display: flex; justify-content: flex-end;">
+        <a href="#"><i class="fas fa-shield-alt"></i><span> </span></a>
+        <span>&nbsp;&nbsp;Qutaiba ASHQAR</span>
+    </div>
+
+
+    <div class="islemekle">
+        <div class="islem">
+            <span>İşlemler</span>
+        </div>
+        
+        <!--
+            <a href="/Ekle"></a>
+        -->
+        <a href="#" onclick="addNote()" class="ekle-link"><i class="fas fa-plus"></i><span class="ekle">&nbsp;Ekle</span></a>
+    </div>
+    
+    
+
+
+    <!--  -->
+    <!--  --><!--  -->
+    <!--  --><!--  -->
+    <!--  --><!--  -->
+    <!--  --><!--  -->
+    <!--  --><!--  -->
+    <!--  --><!--  -->
+    <!--  -->
+
+
+
+    <div class="notes-container" id="notesContainer">
+        <!-- Existing notes fetched from the database -->
+        @foreach (var note in Model.Notes)
+        {
+            <div class="note" contenteditable="true">
+                <span class="note-margin-left-0">"@note.Content"</span>
+                
+                <button onclick="editNote(this)">Edit</button>
+                <button onclick="deleteNote(this)">Delete</button>
+            </div>
+        }
+    </div>
+
+
+
+
+    <script>
+        function addNote() {
+            var notesContainer = document.getElementById('notesContainer');
+
+            // Create a new note element using the createNoteElement function
+            var newNote = createNoteElement();
+
+            // Append the new note to the notesContainer
+            notesContainer.appendChild(newNote);
+        }
+
+        function createNoteElement() {
+            // Create a new note element
+            var newNote = document.createElement('div');
+            newNote.classList.add('note');
+            newNote.contentEditable = true;
+
+            // Create blocks for name, price, date, and position
+
+
+            var positionBlock = document.createElement('span');
+            positionBlock.textContent = 'Note';
+            newNote.appendChild(positionBlock);
+
+            // Create edit, delete, and save buttons
+            var editButton = createButton('editNote', 'Edit', editNote);
+            var deleteButton = createButton('deleteNote', 'Delete', deleteNote);
+
+            newNote.appendChild(editButton);
+            newNote.appendChild(deleteButton);
+
+            return newNote;
+        }
+
+        function getCurrentDate() {
+            var currentDate = new Date();
+            return currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
+        }
+
+        function editNote(button) {
+            // Add your edit logic here
+            var noteContainer = button.parentNode;
+            // Implement your logic for editing the note content
+        }
+
+        function deleteNote(button) {
+            // Add your delete logic here
+            var noteContainer = button.parentNode;
+            noteContainer.parentNode.removeChild(noteContainer);
+        }
+
+        function createButton(iconClass, tooltip, onClick) {
+            var button = document.createElement('button');
+            button.innerHTML = '<i class="fas ' + iconClass + '"></i>';
+            button.title = tooltip;
+            button.onclick = function () {
+                onClick(button);
+            };
+            return button;
+        }
+    </script>
+
+
+
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- BOXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+
+     <div class="islemekle-1">
+        <div class="islem-1">
+            <span>Banka kartları</span>
+        </div>
+        
+        <div class="ekle1">
+            <a href="#" onclick="addBox1()" class="ekle-link-1"><i class="fas fa-plus"></i><span class="ekle1">&nbsp;Ekle</span></a>
+        </div>
+    </div>
+
+    <div class="scroll-container">
+        <div class="box-container" id="boxContainer">
+            <!-- Boxes will be dynamically added here -->
+        </div>
+        <button class="scroll-button" onclick="scrollToNext()">
+            <span>&rarr;</span>
+        </button>
+    </div>
+
+    <script>
+        
+        let currentIndex = 0;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            for (let i = 0; i < 5; i++) {
+                addBox1();
+            }
+        });
+
+        function addBox1() {
+
+            const boxContainer = document.getElementById('boxContainer');
+            const newBox = document.createElement('div');
+            newBox.className = 'box';
+
+            // Add top-left note input
+            const topLeftNote = document.createElement('input');
+            topLeftNote.className = 'top-left-note';
+            topLeftNote.placeholder = 'Başlık';
+            newBox.appendChild(topLeftNote);
+
+            // Add middle-left note input
+            const middleLeftNote = document.createElement('textarea');
+            middleLeftNote.className = 'middle-left-note';
+            middleLeftNote.placeholder = 'Note';
+            newBox.appendChild(middleLeftNote);
+
+            // Add delete button to the box
+            addDeleteButton(newBox);
+            boxContainer.appendChild(newBox);
+
+            // Update currentIndex after adding a new box
+            currentIndex++;
+
+        }
+
+        function scrollToNext() {
+            const boxContainer = document.getElementById('boxContainer');
+            const boxWidth = 220; // Width of the box including margin
+            const containerWidth = boxContainer.clientWidth;
+            const maxScroll = boxWidth * (currentIndex - Math.floor(containerWidth / boxWidth));
+
+            if (boxContainer.scrollLeft < maxScroll) {
+                boxContainer.scrollLeft += boxWidth;
+            }
+        }
+
+        function scrollToPrevious() {
+            const boxContainer = document.getElementById('boxContainer');
+            const boxWidth = 220; // Width of the box including margin
+
+            if (boxContainer.scrollLeft > 0) {
+                boxContainer.scrollLeft -= boxWidth;
+            }
+        }
+
+        function addDeleteButton(box) {
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-button';
+            deleteButton.innerHTML = '<i class="fas fa-times"></i>';
+            deleteButton.onclick = function () {
+                deleteBox(box);
+            };
+
+            box.appendChild(deleteButton);
+        }
+
+        function deleteBox(box) {
+            const boxContainer = document.getElementById('boxContainer');
+            const indexToRemove = Array.from(boxContainer.children).indexOf(box);
+
+            boxContainer.removeChild(box);
+
+            // If you want to keep the index sequence, you may need to update other boxes' data-index
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach((box, index) => {
+                if (index > indexToRemove) {
+                    box.textContent = `Box ${index + 1}`;
+                }
+            });
+
+            // Update currentIndex after deleting a box
+            currentIndex--;
+
+            // Reset scroll position after deleting a box
+            scrollToNext();
+        }
+
+    </script>
+
+
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- BOXXXXXXXXXXXXXXXXXXXXXXXXXX         2222222222222 -->
+
+
+    
+    
+    
+    
+    <div class="islemekle-2">
+        <div class="islem-2">
+            <span>Para Birimleri</span>
+        </div>
+
+        <div class="ekle2">
+            <a href="#" onclick="addBox2()" class="ekle-link-2"><i class="fas fa-plus"></i><span class="ekle2">&nbsp;Ekle</span></a>
+        </div>
+    </div>
+
+    <div class="scroll-container">
+        <div class="box-container" id="boxContainer2">
+            <!-- Second set of boxes will be dynamically added here -->
+        </div>
+        <button class="scroll-button" onclick="scrollToNext2()">
+            <span>&rarr;</span>
+        </button>
+    </div>
+
+    <script>
+        let currentIndex2 = 0;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            for (let i = 0; i < 4; i++) {
+                addBox2();
+            }
+        });
+
+        function addBox2() {
+            const boxContainer = document.getElementById('boxContainer2');
+            const newBox = document.createElement('div');
+            newBox.className = 'box2';
+
+            // Add top-left note input
+            const topLeftNote = document.createElement('input');
+            topLeftNote.className = 'top-left-note2';
+            topLeftNote.placeholder = 'Title';
+            newBox.appendChild(topLeftNote);
+
+            // Add middle-left note input
+            const middleLeftNote = document.createElement('textarea');
+            middleLeftNote.className = 'middle-left-note2';
+            middleLeftNote.placeholder = 'Note';
+            newBox.appendChild(middleLeftNote);
+
+            // Add delete button to the box
+            addDeleteButton2(newBox);
+            boxContainer.appendChild(newBox);
+
+            // Update currentIndex after adding a new box
+            currentIndex2++;
+        }
+
+        function scrollToNext2() {
+            const boxContainer = document.getElementById('boxContainer2');
+            const boxWidth = 220; // Width of the box including margin
+            const containerWidth = boxContainer.clientWidth;
+            const maxScroll = boxWidth * (currentIndex2 - Math.floor(containerWidth / boxWidth));
+
+            if (boxContainer.scrollLeft < maxScroll) {
+                boxContainer.scrollLeft += boxWidth;
+            }
+        }
+
+        function addDeleteButton2(box) {
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-button2';
+            deleteButton.innerHTML = '<i class="fas fa-times"></i>';
+            deleteButton.onclick = function () {
+                deleteBox2(box);
+            };
+
+            box.appendChild(deleteButton);
+        }
+
+        function deleteBox2(box) {
+            const boxContainer = document.getElementById('boxContainer2');
+            const indexToRemove = Array.from(boxContainer.children).indexOf(box);
+
+            boxContainer.removeChild(box);
+
+            // If you want to keep the index sequence, you may need to update other boxes' data-index
+            const boxes = document.querySelectorAll('.box2');
+            boxes.forEach((box, index) => {
+                if (index > indexToRemove) {
+                    box.textContent = `Box ${index + 1}`;
+                }
+            });
+
+            // Update currentIndex after deleting a box
+            currentIndex2--;
+
+            // Reset scroll position after deleting a box
+            scrollToNext2();
+        }
+    </script>
+
+
+
+
+
+
+    <!-- bar -->
+    <!-- bar -->
+    <!-- bar -->
+    <!-- bar -->
+    <!-- bar -->
+    
+    <div class="line-chart">
+        <h6>Dolar to TL</h6>
+        <div id="chart"></div>
+    </div> 
+    <script>
+        var options = {
+            chart: {
+                height: 180,
+                type: "area"
+            },
+            dataLabels: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: "arrow",
+                    data: [
+                            1.48,
+                            1.40,
+                            1.20,
+                            1.57,
+                            1.56,
+                            1.57,
+                            1.84,
+                            2.10,
+                            2.00,
+                            2.70,
+                            2.97,
+                            3.57,
+                            4.13,
+                            6.05,
+                            6.82,
+                            6.86,
+                            8.54,
+                            14.45,
+                            19.85,
+                            29.00
+                    ]
+                }
+            ],
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shadeIntensity: 3,
+                    opacityFrom: 1.7,
+                    opacityTo: 5.9,
+                    stops: [0, 90, 100]
+                }
+            },
+            xaxis: {
+                categories: [
+                    "May 2006",
+                    "May 2007",
+                    "May 2008",
+                    "May 2009",
+                    "May 2010",
+                    "May 2011",
+                    "May 2012",
+                    "May 2013",
+                    "May 2014",
+                    "May 2015",
+                    "May 2016",
+                    "May 2017",
+                    "May 2018",
+                    "May 2019",
+                    "May 2020",
+                    "May 2021",
+                    "May 2022",
+                    "May 2023",
+                    "May 2024"
+                ]
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+        chart.render();
+
+    </script>
+    
+
+
+    <!-- bar -->
+    <!-- bar -->
+    <!-- bar -->
+    <!-- bar -->
+    <!-- bar -->
+    <!-- Footer -->
+
+    <footer class="border-top footer text-muted">
+        <div class="container12">
+            &copy; QB | © 2023 All Rights Reserved<a asp-area="" asp-page="/Privacy"> Privacy</a>
+        </div>
+    </footer>
+
+
+</body>
+</html>

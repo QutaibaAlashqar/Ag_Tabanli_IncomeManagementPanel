@@ -1,0 +1,409 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "AdminUserDashboard";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <!-- Add these lines to your _Layout.cshtml or the specific Razor page -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    
+	<style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .body1 {
+            background: #5041BC;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            margin: -20px 0 50px;
+            overflow-x: hidden;
+        }
+
+
+        h1 {
+            color : azure;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        h15 {
+            color: azure;
+            font-weight: bold;
+            margin: 0;
+            font-size: 30px;
+        }
+
+
+        p {
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+        }
+
+        span {
+            font-size: 12px;
+            color: azure;
+        }
+
+        a {
+            color: #333;
+            font-size: 14px;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+
+        .button2 {
+            border-radius: 20px;
+            border: 1px solid #FF4B2B;
+            background-color: #FF4B2B;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+        }
+
+        button:active {
+            background-color: #5041BC;
+        }
+
+        form {
+            background-color: #5041BC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            text-align: center;
+        }
+
+        input {
+            background-color: #eee;
+            border: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        .container1 {
+            background-color: #5041BC;
+            border-radius: 80px;
+            box-shadow: 0 25px 100px rgba(0,0,0,0.9), 0 50px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 768px;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column; /* Stack children vertically */
+            align-items: center; /* Center children horizontally */
+            justify-content: center; /* Center children vertically */
+            margin: auto; /* Center the container horizontally */
+        }
+
+        .form-container1 {
+            position: absolute;
+            top: 0;
+            height: 100%;
+        }
+
+        .log-in-container1 {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+
+        .overlay-container1 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+        }
+
+
+        .overlay {
+            background: #FF416C;
+            background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+            background: linear-gradient(to right, #FF4B2B, #FF416C);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            color: #FFFFFF;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+        }
+
+        .overlay-panel {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+        }
+
+
+        .overlay-right {
+            right: 0;
+        }
+
+
+        .social-container1 {
+            margin: 50px 0;
+        }
+
+        .social-container1 a {
+            border: 1px solid #DDDDDD;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            height: 40px;
+            width: 40px;
+        }
+
+        .container1_circles {
+            position: relative;
+        }
+
+        .circleTwo {
+            background-color: #FFC629;
+            border-radius: 50%;
+            top: -30px; /* Adjust the top position as needed */
+            width: 65px; /* Adjust the width to make it smaller */
+            left: -60px;
+            height: 65px; /* Adjust the height to make it smaller */
+            position: absolute; /* Ensure it's positioned correctly */
+        }
+
+        .circleOne {
+            background-color: #FF7F57; /* Change the color of the smaller circle as needed */
+            border-radius: 50%;
+            top: -22px; /* Adjust the top position to position it next to the larger circle */
+            width: 50px; /* Adjust the width to make it smaller */
+            height: 50px; /* Adjust the height to make it smaller */
+            position: absolute;
+            left: -85px; /* Adjust the left position to position it next to the larger circle */
+        }
+
+        .Title_circle {
+            font-family: Passion One;
+            font-size: 30px;
+            font-weight: 400;
+            top: -30px; /* Adjust the top position to position it next to the larger circle */
+            width: 100px; /* Adjust the width to make it smaller */
+            height: 40px; /* Adjust the height to make it smaller */
+            left: -50px;
+            position: absolute;
+        }
+
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+
+
+        .modal-content {
+            background-color: black; 
+        }
+
+
+        label {
+            font-weight: bold;
+            color: white; 
+            margin-top: 18px;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da; /* Light gray input border */
+        }
+
+        .btn-primary {
+            margin-bottom: 10px;
+            background-color: #5041BC; /* Blue button background */
+            border: 1px solid #333; /* Blue button border */
+        }
+
+            .btn-primary:hover {
+                background-color: #333; /* Darker blue on hover */
+                border: 1px solid #0056b3; /* Darker blue border on hover */
+            }
+    
+        .modal fade {
+            color: #333;
+        }
+
+        .modal-dialog {
+            background-color: #333;
+        }
+        /**/
+        /**/
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+        /*/*/
+
+
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin-left: -7%;
+            white-space: nowrap;
+            line-height: 60px;
+        }
+
+            .footer a {
+                text-decoration: none; /* Remove underline from all links in the footer */
+                color: burlywood; /* Inherit the color from the parent element (footer) */
+            }
+
+        .container12 {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 20%; /* Set left margin to zero */
+            padding: 0; /* Set padding to zero */
+        }
+
+
+	</style>
+
+
+</head>
+
+<body class="body1">
+	<div class="container1" id="container1">
+		<div class="form-container1 log-in-container1" style="background: #FFC629;">
+			<form method="post">
+				<h1>Giriş</h1>
+				<br><br>
+				<span>Hesap bilgilerinizi giriniz</span>
+				<input type="email" id="email" name="email" placeholder="Email" required/>
+				<input type="password" id="password" name="password" placeholder="Şifre" required />
+				<a href="#" id="forgotPassword" style="color: white">Şifrenizi unutunuz mu?</a>
+                
+                @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+                {
+                    <div style="color: red; margin-top: 5px;">@ViewData["ErrorMessage"]</div>
+                }
+                <input type="submit" value="Giriş" name="submit" placeholder="Giriş" class="button2" />
+
+            </form>
+        </div>
+
+        <div class="overlay-container1">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+
+                    <div class="container1_circles">
+                        <div class="circleOne"></div>
+                        <div class="circleTwo"></div>
+                        <div class="Title_circle">AdminUser</div>
+                    </div>
+
+                    <br><br><br><br>
+                    <h15>Gelirim Yönetme Paneli</h15>
+
+                    <p><br><br>Bizimle iletişime geçebilirsiniz <br><br> qbworkk@gmail.com <br> YADA <br> +90 552 530 04 77</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+
+                
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form style="background-color: #333;">
+                        <div class="mb-3" >
+                            <label for="inputEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="YourEmail@Gmail.com">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts {
+        <script>
+            // JavaScript to handle showing the modal on link click
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('forgotPassword').addEventListener('click', function () {
+                    var modal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
+                    modal.show();
+                });
+            });
+        </script>
+    }
+
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!-- Your existing HTML content -->
+    <!-- Footer -->
+
+    
+    <footer class="border-top footer text-muted">
+        <div class="container12">
+                &copy; QB | © 2023 All Rights Reserved<a asp-area="" asp-page="/Privacy"> Privacy</a>
+        </div>
+    </footer>
+
+
+
+
+</body>
+</html>

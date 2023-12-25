@@ -1,0 +1,337 @@
+﻿@page "/Info"
+@model WebApplication1.Pages.InfoModel
+@{
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+
+    <style>
+
+        .sidebar {
+            z-index: 1;
+            top: 0;
+            background: #5041BC;
+            padding-top: 90px;
+            position: fixed;
+            left: 0;
+            width: 300px;
+            height: calc(100% - 0%);
+            transition: 3.5s;
+            transition-property: left;
+            overflow-y: auto;
+        }
+
+        .container1_circles {
+            position: absolute;
+            top: 50px;
+            left: 130px
+        }
+
+        .circleTwo {
+            background-color: #FFC629;
+            border-radius: 50%;
+            top: -30px; /* Adjust the top position as needed */
+            width: 65px; /* Adjust the width to make it smaller */
+            left: -60px;
+            height: 65px; /* Adjust the height to make it smaller */
+            position: absolute; /* Ensure it's positioned correctly */
+        }
+
+        .circleOne {
+            background-color: #FF7F57; /* Change the color of the smaller circle as needed */
+            border-radius: 50%;
+            top: -22px; /* Adjust the top position to position it next to the larger circle */
+            width: 50px; /* Adjust the width to make it smaller */
+            height: 50px; /* Adjust the height to make it smaller */
+            position: absolute;
+            left: -85px; /* Adjust the left position to position it next to the larger circle */
+        }
+
+        .Title_circle {
+            font-family: Passion One;
+            font-size: 30px;
+            font-weight: 400;
+            top: -30px; /* Adjust the top position to position it next to the larger circle */
+            width: 100px; /* Adjust the width to make it smaller */
+            height: 40px; /* Adjust the height to make it smaller */
+            left: -50px;
+            position: absolute;
+        }
+
+        .profile_info {
+            margin-top: 20px; /* Increase the value to move the picture down */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar .profile_info .profile_image {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            margin-bottom: 100px;
+            background-color: darkgray;
+        }
+
+        .sidebar a {
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 70px;
+            text-decoration: none;
+            padding-left: 50px;
+            box-sizing: border-box;
+            transition: 0.5s;
+            transition-property: background;
+        }
+
+            .sidebar a:hover {
+                background: #FFC629;
+            }
+
+
+        /**/ /*\*/
+        /**/ /**/
+
+
+
+        .islemekle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            margin-left: 23%;
+        }
+
+        .ekle {
+            font-weight: bold;
+            font-size: 80%;
+            color: black;
+        }
+
+        .islem {
+            display: flex;
+            margin-right: 80%; /* Adjust this value as needed */
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+
+
+        /**/ /*\*/
+        /**/ /**/
+
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 5px;
+            margin-left: 20%;
+        }
+
+        .section {
+            background-color: #ffffff; /* White background */
+            border: 1px solid #dee2e6; /* Light gray border */
+            border-radius: 10px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff; /* Blue heading */
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #495057; /* Dark gray label text */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue button background */
+            border: 1px solid #007bff; /* Blue button border */
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3; /* Darker blue on hover */
+                border: 1px solid #0056b3; /* Darker blue border on hover */
+            }
+
+
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin-left: -7%;
+            white-space: nowrap;
+            line-height: 60px;
+        }
+
+            .footer a {
+                text-decoration: none; /* Remove underline from all links in the footer */
+                color: burlywood; /* Inherit the color from the parent element (footer) */
+            }
+
+        .container12 {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 20%; /* Set left margin to zero */
+            padding: 0; /* Set padding to zero */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!--sidebar start-->
+    <div class="sidebar">
+
+        <div class="container1_circles">
+            <div class="circleOne"></div>
+            <div class="circleTwo"></div>
+            <div class="Title_circle">AdminUser</div>
+        </div>
+        <div class="profile_info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQurSbEfkF4oEgeH0xgCXQZImunI_Vbse-oT4c938UixA&s" class="profile_image" alt="Photo" role="img" />
+        </div>
+        <a href="/Home" class="@(IsPageActive("Home"))"><i class="fas fa-desktop"></i><span>&nbsp;&nbsp;&nbsp;Ana Sayfa</span></a>
+        <a href="/Odenmesi" class="@(IsPageActive("Odenmesi"))"><i class="fas light fa-list"></i><span>&nbsp;&nbsp;&nbsp;Ödenecek</span></a>
+        <a href="/Borclar" class="@(IsPageActive("Borclar"))"><i class="fas fa-money-bill"></i><span>&nbsp;&nbsp;&nbsp;Borçlar</span></a>
+        <a href="/Info" class="@(IsPageActive("Info"))"><i class="fas fa-cogs"></i><span>&nbsp;&nbsp;&nbsp;Hesabım</span></a>
+        <a href="/Index" class="@(IsPageActive("Logout"))"><i class="fas fa-power-off"></i><span>&nbsp;&nbsp;&nbsp;Çıkış</span></a>
+
+        @functions {
+            // Method to determine if the current page is active
+            private string IsPageActive(string page)
+            {
+                return Request.Path.StartsWithSegments("/" + page, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+            }
+        }
+    </div>
+    <!--sidebar end-->
+
+
+    
+
+
+    <div style="display: flex; justify-content: flex-end;">
+        <a href="#"><i class="fas fa-shield-alt"></i><span> </span></a>
+        <span>&nbsp;&nbsp;Qutaiba ASHQAR</span>
+    </div>
+
+
+    <div class="islemekle">
+        <div class="islem">
+            <span>Hesabım</span>
+        </div>
+
+        <!--
+            <a href="/Ekle"></a>
+        -->
+    </div>
+
+
+    <!---->
+
+
+    <div class="dashboard-container">
+        <!-- Section 1: User Information -->
+        <div class="section">
+            <h2>User Information</h2>
+            <form method="post" action="/Info">
+                @Html.AntiForgeryToken()
+                <div class="form-group" method="get" action="/Info">
+                    <label for="userName">User Name</label>
+                    <input type="text" class="form-control" id="userName" value="Qutaiba ASHQAR" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" class="form-control" id="userEmail" name="userEmail" value="@Model.Email" />
+                </div>
+                <div class="form-group">
+                    <label for="userPhone">Phone Number</label>
+                    <input type="tel" class="form-control" id="userPhone" name="userPhone" value="@Model.PhoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Password</label>
+                    <input type="password" class="form-control" id="userPassword" name="userPassword" value="@Model.Password" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+
+
+        <!-- Section 2: Contact Information -->
+        <div class="section">
+            <h2>Contact Information</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label for="companyEmail">Company Email</label>
+                    <input type="email" class="form-control" id="companyEmail" value="qbworkk@gmail.com" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="companyPhone">Company Phone</label>
+                    <input type="tel" class="form-control" id="companyPhone" value="+90 557 530 04 77" readonly/>
+                </div>
+                <div class="form-group">
+                    <label for="note">Send a Note</label>
+                    <textarea class="form-control" id="note" name="userMessage" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Note</button>
+            </form>
+        </div>
+
+        <!-- Section 3: User Details -->
+        <div class="section">
+            <h2>User Details</h2>
+            <p>Date of Start: 10.11.2019</p>
+            <p>Birthday: 01.01.2001</p>
+            <p>User Number: $#266819</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+    <!-- Footer -->
+
+    <footer class="border-top footer text-muted">
+        <div class="container12">
+            &copy; QB | © 2023 All Rights Reserved<a asp-area="" asp-page="/Privacy"> Privacy</a>
+        </div>
+    </footer>
+
+
+</body>
+</html>
